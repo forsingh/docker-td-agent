@@ -20,7 +20,17 @@ RUN apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 RUN /opt/td-agent/embedded/bin/fluent-gem install --no-ri --no-rdoc \
     fluent-plugin-elasticsearch \
     fluent-plugin-record-modifier \
-    fluent-plugin-exclude-filter
+    fluent-plugin-exclude-filter	\
+    fluent-plugin-amqp      \
+    fluent-plugin-s3  \
+    fluent-plugin-secure-forward  
+
+
+
+RUN mkdir -p /var/log/fluent/s3
+
+RUN mkdir /source/
+COPY * /source/
 
 
 # add conf
